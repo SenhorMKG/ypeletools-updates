@@ -1,0 +1,77 @@
+{
+  "formato": 1,
+  "produto": "yPeleTools",
+  "repositorio": "SenhorMKG/ypeletools-updates",
+  "versao": "3.4.0",
+  "tag": "v3.4.0",
+  "canal": "Alpha",
+  "nome": "Alpha 3.4",
+  "publicado_em": "2026-10-25T04:44:47Z",
+  "notas": "**YPELÉ TOOLS — ALPHA 3.4**\nChangelog oficial · outubro de 2026\nPlataforma de referência: Windows 10 e 11 (64 bits) · Python 3.13\n\nA Alpha 3.4 traz a escolha de faixas antes de baixar uma playlist, uma pasta para cada playlist, até 30 downloads ao mesmo tempo, capas nos downloads recentes e os arquivos internos do app fora da pasta de downloads.\n\n====================================================================\n\n**NOVIDADES**\n\n**1. Escolha das faixas de uma playlist**\n- Ao colar o link de uma playlist do YouTube, de um set do SoundCloud ou de uma playlist ou álbum do Spotify, abre uma janela para escolher as faixas antes de baixar.\n- A janela aparece sobre o app, que fica escurecido enquanto ela estiver aberta. Fecha com Cancelar, com o × ou com Esc.\n- O que a janela mostra:\n  - a capa, o nome, o dono e o total de faixas da playlist;\n  - cada faixa com capa, título, artista e duração;\n  - uma marcação por faixa;\n  - a busca por título ou artista;\n  - \"Selecionar todas\", \"Desmarcar todas\" e \"Inverter seleção\";\n  - o contador \"X de Y selecionadas\";\n  - o formato e a pasta onde as faixas vão ser salvas.\n- Só as faixas marcadas entram na fila, e só depois de clicar em \"Baixar\". Nada é baixado antes disso.\n- A lista rola sozinha, separada do resto da janela, e continua leve em playlists com milhares de faixas.\n- Shift + clique marca ou desmarca um intervalo de faixas.\n- Com a busca ativa, os botões de seleção valem só para as faixas encontradas.\n- Faixas que não podem ser baixadas aparecem cinza, com o motivo: privadas, removidas, bloqueadas na sua região ou só com prévia de 30 segundos no SoundCloud Go+.\n- Faixas repetidas na playlist e faixas que você já baixou no mesmo formato aparecem desmarcadas, com aviso. Você pode marcá-las se quiser.\n- Se a leitura falhar (link errado, playlist privada, sem internet), a janela explica o motivo e oferece \"Tentar de novo\".\n- Cancelar durante a leitura descarta o resultado. Nada entra na fila.\n- O link de um vídeo ou de uma música avulsa continua indo direto para a fila, sem a janela.\n- Para baixar a playlist inteira de um link do YouTube que também aponta para um vídeo (watch?v=...&list=...), use \"Baixar playlist\".\n\n**2. Como cada serviço é lido**\n- **YouTube:** o yt-dlp lê a lista (título, canal, duração e miniatura de cada vídeo) sem baixar nada.\n- **SoundCloud:** o set é lido pela mesma interface que o site do SoundCloud usa, por meio do yt-dlp. Título, artista, duração e capa vêm de todas as faixas, em pedidos de até 50. Se essa leitura falhar, o app usa a leitura simples do yt-dlp e os nomes saem do endereço de cada faixa.\n- **Spotify:** do Spotify vêm só os dados das faixas: nome, artistas, duração e capa.\n  - O áudio continua vindo do YouTube, com a mesma verificação de título, artista e duração de antes. Nada de DRM é contornado.\n  - Sem a API oficial, a página pública do Spotify mostra até cerca de 100 faixas. Com a API configurada em Configurações, a playlist vem inteira.\n- Uma playlist lida há menos de 10 minutos não é lida de novo.\n- Uma faixa com problema não impede as outras.\n\n**3. Uma pasta para cada playlist**\n- As faixas escolhidas vão para uma pasta com o nome da playlist, dentro da pasta de downloads (por exemplo, Downloads\\yPeléTools\\Sedução Auditiva).\n- Caracteres que o Windows não aceita viram \"_\". Nomes reservados do Windows (CON, NUL...) e pontos no fim também são tratados.\n- A mesma playlist baixada de novo usa a mesma pasta. Uma playlist diferente com o mesmo nome ganha \"Nome (2)\".\n- Nenhum arquivo é sobrescrito: uma música com nome repetido vira \"Música (1).mp3\".\n- A pasta só é criada quando a primeira faixa fica pronta. Se nada for baixado, nenhuma pasta vazia fica para trás.\n- Downloads avulsos continuam indo para a pasta de downloads, como antes.\n\n**4. Até 30 downloads ao mesmo tempo**\n- O limite subiu de 8 para 30. A opção fica em Configurações > Downloads simultâneos: 1, 2, 3, 5, 10 ou personalizado de 1 a 30.\n- O valor é conferido na tela e na fila: fora da faixa fica no limite mais próximo, e um texto que não é número volta ao padrão (2).\n- Mudar o número com downloads em andamento vale na hora. Os que já estão rodando terminam normalmente, e a fila abre ou deixa de abrir vagas.\n- Mesmo com 30 downloads, no máximo 6 buscas de música no YouTube (as do Spotify) rodam ao mesmo tempo, para não sobrecarregar.\n- Acima de 10, o painel de logs avisa que o YouTube e o SoundCloud podem limitar os pedidos por alguns minutos.\n- O indicador \"simultâneos: N\" saiu do rodapé das abas de download. A configuração continua em Configurações.\n\n**5. Downloads recentes com capas**\n- A seção da aba Início foi redesenhada:\n  - músicas mostram capa, título, artista, data e hora;\n  - vídeos mostram miniatura, título, data e hora.\n- As capas ficam guardadas no computador (%LOCALAPPDATA%\\yPeléTools\\capas) e continuam aparecendo depois de fechar e abrir o app, mesmo sem internet. Cada imagem é baixada uma vez só.\n- Faixas do Spotify usam a capa da própria música.\n- Registros antigos, sem capa guardada, ganham a capa na primeira vez que aparecem, se a miniatura ainda estiver disponível. Sem capa, aparece o ícone do serviço.\n- \"ver todos\" abre a aba \"Baixados\" do serviço do download mais recente. Clicar num item mostra o arquivo na pasta.\n- A lista de \"Baixados\" de cada aba também passou a usar as capas guardadas.\n\n**6. Arquivos internos fora da pasta de downloads**\n- config.json, downloads_fila.json e conversor_fila.json saíram de Downloads\\yPeléTools e agora ficam em %LOCALAPPDATA%\\yPeléTools\\dados. A pasta de downloads fica só com as suas músicas e vídeos.\n- Na primeira abertura da 3.4, os arquivos antigos são copiados e conferidos byte a byte. Só depois disso são apagados da pasta de downloads.\n- Configurações, filas, histórico, credenciais da API do Spotify e o número de downloads simultâneos são mantidos.\n- Um arquivo antigo corrompido não é aproveitado e fica guardado para análise. Se os dois existirem, vale o mais recente.\n- Se a pasta de dados não aceitar gravação, o app continua usando a pasta de downloads, como antes, e avisa no painel de logs.\n- Os dados do app ficam separados dos arquivos temporários do atualizador e do Python da instalação.\n\n====================================================================\n\n**CORREÇÕES**\n- Início: os downloads recentes às vezes paravam de se atualizar depois de trocar de aba (a atualização só voltava ao reabrir o app).\n- Spotify com a API oficial: o nome da playlist agora aparece (antes ficava \"Spotify playlist\").\n\n====================================================================\n\n**ATUALIZAÇÃO E INSTALADOR**\n- Quem tem a Alpha 3.3 recebe a 3.4 pelo botão amarelo, assim que ela for publicada no repositório oficial. O atualizador e a assinatura não mudaram.\n- Quem tem a 3.2 (ou não tem o app) usa o YPeleTools-Setup-Alpha-3.4.exe. Ele mantém a mesma pasta, o Python do app e os seus downloads.\n- A desinstalação nunca apaga os downloads nem a pasta de dados, e o texto dela agora mostra onde os dados ficam.\n\n====================================================================\n\n**DEPENDÊNCIAS**\n- Nenhuma dependência nova. O requirements.txt não mudou.\n- As capas usam o Pillow, que o app já usava. Sem ele, as listas mostram o ícone do serviço no lugar da capa.\n\n====================================================================\n\n**LIMITAÇÕES CONHECIDAS**\n- Spotify sem a API oficial: a página pública mostra até cerca de 100 faixas de uma playlist. A janela avisa quando chega nesse limite.\n- SoundCloud: a leitura detalhada usa a interface do próprio site (por meio do yt-dlp). Se o SoundCloud mudar essa interface, a janela continua funcionando, mas os nomes podem sair do endereço das faixas.\n- O SoundCloud Go+ só libera prévias de 30 segundos de algumas faixas. Essas aparecem desmarcadas.\n- Com muitos downloads ao mesmo tempo, o YouTube pode limitar os pedidos por alguns minutos (erro 429). Se acontecer, diminua o número em Configurações.\n- Se você voltar para a Alpha 3.3 depois de abrir a 3.4, a 3.3 abre com as configurações padrão: ela procura os arquivos na pasta de downloads. Ao voltar para a 3.4, vale a cópia mais recente.\n\n====================================================================\n\n**TESTES REALIZADOS**\n- Windows emulado (Wine 10), com cliques reais e capturas de tela:\n  - Alpha 3.3 instalada e atualizada para a 3.4 pelo botão amarelo, com uma Release de teste assinada num GitHub local;\n  - os três arquivos internos saíram da pasta de downloads, as configurações foram mantidas (8 simultâneos e a API do Spotify) e o histórico continuou;\n  - janela de seleção de uma playlist com 6 faixas (1 indisponível): 1 faixa desmarcada à mão, 4 baixadas de verdade (yt-dlp e FFmpeg) em paralelo para a pasta \"Sedução_ Auditiva_\";\n  - formato que a mídia não tinha: as 4 falharam com o motivo certo e nenhuma pasta vazia ficou para trás;\n  - rodapé sem o indicador de simultâneos; Configurações com 1, 2, 3, 5, 10 e personalizado até 30;\n  - YPeleTools-Setup-Alpha-3.4.exe rodado por cima da 3.4 (Reparar): concluído, arquivos instalados idênticos aos do projeto, dados e downloads mantidos.\n- 167 testes automatizados no Linux com as bibliotecas de verdade (yt-dlp, FFmpeg, Pillow, ONNX Runtime, Tkinter): todos aprovados, 1 pulado (motor de GPU, sem Vulkan no ambiente).\n- Os mesmos 167 testes no Python do Windows (Wine): 152 aprovados, 5 pulados e 10 com falha. As 10 falhas e 4 dos pulados dependem do Pillow de verdade, que não estava instalado no ambiente Windows de teste.\n- Os testes novos desta versão cobrem:\n  - leitura de playlists com o yt-dlp e o Spotify simulados;\n  - pastas e nomes;\n  - capas guardadas;\n  - 30 downloads ao mesmo tempo;\n  - só as faixas escolhidas baixadas de verdade para a pasta da playlist;\n  - migração dos arquivos;\n  - a janela de seleção (busca, marcar, desmarcar, inverter, cancelar e confirmar).\n\nNão testado:\n- Leitura real de playlists no YouTube, no SoundCloud e no Spotify: esses sites não estavam acessíveis no ambiente de testes. A leitura foi testada com respostas no formato do yt-dlp e do Spotify, e o download com mídia servida localmente.\n- Capas no Windows emulado: o ambiente Windows de teste não tinha o Pillow de verdade. As capas foram testadas no Linux.\n- Escurecimento do fundo no Windows de verdade: no Wine a camada aparece preta. No Windows ela fica semitransparente.\n",
+  "chave": "ypele-2026-1",
+  "pacotes": [
+    {
+      "distribuicao": "windows-instalador",
+      "arquivo": "ypeletools-3.4.0-windows.zip",
+      "tamanho": 725121,
+      "sha256": "54a7bdede8e35c0cc8f00825957d7f4cb85f9d3386573601ee04a3f6ed7a5779",
+      "arquivos": [
+        {
+          "caminho": "app/CHANGELOG_ALPHA_3.0.txt",
+          "tamanho": 11777,
+          "sha256": "e1c58c92598b5e6e7ebe6e14816bdad7b9246f5df82dfe292a4edde77d5299af"
+        },
+        {
+          "caminho": "app/CHANGELOG_ALPHA_3.1.txt",
+          "tamanho": 10356,
+          "sha256": "14565382b1ce07b8a3ffcf1f648c024b78cd9d1f1f8ab7f023f83aa2621ca1ab"
+        },
+        {
+          "caminho": "app/CHANGELOG_ALPHA_3.2.txt",
+          "tamanho": 8929,
+          "sha256": "af4a457faf17de4144ce4cf789f7f2103bb89c416cfea42621a19ae4c85b3a30"
+        },
+        {
+          "caminho": "app/CHANGELOG_ALPHA_3.3.txt",
+          "tamanho": 10565,
+          "sha256": "eeacb97d815ebfc2893cde1c274d16767477e5b253989ef4741e1ae55f8c6ae0"
+        },
+        {
+          "caminho": "app/CHANGELOG_ALPHA_3.4.txt",
+          "tamanho": 10608,
+          "sha256": "382172618dee485c9d118e78c2b4e1d4fd07e8606954427479c4c409f7620e85"
+        },
+        {
+          "caminho": "app/requirements.txt",
+          "tamanho": 1801,
+          "sha256": "e35cb525951da34e61f307fddf056fbc105b1fe4f62ec45c465dd7047f82a77d"
+        },
+        {
+          "caminho": "app/ypele.ico",
+          "tamanho": 46241,
+          "sha256": "b4e5bb319ba97922069b4d16547d7694b8d212fc595c68ce89fa0fff0d39abf0"
+        },
+        {
+          "caminho": "app/ypele_atualizador.py",
+          "tamanho": 63834,
+          "sha256": "f8e8c888017a32a405ca1ed1282cc902912d8e9bee4af4840598007bdb27160b"
+        },
+        {
+          "caminho": "app/ypele_tools.py",
+          "tamanho": 1624436,
+          "sha256": "8829d12a67a1fdfb86173ce4d47ba5c1da458f1e1d9854c539d0a7ee698d5074"
+        },
+        {
+          "caminho": "desinstalar/ypele_setup.pyw",
+          "tamanho": 230846,
+          "sha256": "7612d684915c57dec6283721a408e267e30d7177c949dd23bcffac823832f8c6"
+        }
+      ]
+    }
+  ],
+  "instalador": {
+    "arquivo": "YPeleTools-Setup-Alpha-3.4.exe",
+    "tamanho": 22443008,
+    "sha256": "d1825bdb7fb1cb38eb16b2473c1eaf951787ba7a4a288db666879df380e22d8a"
+  }
+}
