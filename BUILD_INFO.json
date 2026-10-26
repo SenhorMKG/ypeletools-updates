@@ -1,0 +1,14 @@
+{
+  "versao": "Beta 3.7.0",
+  "versao_semver": "3.7.0",
+  "python_do_app": "3.13.17",
+  "arquivos_no_pacote": 2591,
+  "tamanho": 22618624,
+  "sha256": "c5186a4f0821b8b0189b6e65472e7ad37bbaceace19a9a1f8a2568a26e03e8d9",
+  "instalador": "YPeleTools-Setup-Beta-3.7.0.exe",
+  "gerado_em": "2026-10-25T22:44:45.027302+00:00",
+  "sistema_do_build": "Linux-6.18.44-fc-v153-x86_64-with-glibc2.39",
+  "python_build": "3.13.14",
+  "go": "go version go1.24.7 linux/amd64",
+  "pillow": true
+}
