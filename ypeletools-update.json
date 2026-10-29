@@ -2,19 +2,19 @@
   "formato": 1,
   "produto": "yPeleTools",
   "repositorio": "SenhorMKG/ypeletools-updates",
-  "versao": "3.7.0",
-  "tag": "v3.7.0",
+  "versao": "3.8.2",
+  "tag": "v3.8.2",
   "canal": "Beta",
-  "nome": "Beta 3.7.0",
-  "publicado_em": "2026-10-26T02:08:01Z",
-  "notas": "**YPELÉ TOOLS — BETA 3.7.0**\nChangelog oficial · outubro de 2026\nPlataforma de referência: Windows 10 e 11 (64 bits) · Python 3.13\n\nA 3.7.0 traz a aba yTorrents (links diretos, MEGA, MediaFire, Pixeldrain, Dropbox, arquivos .torrent e magnets), transforma o Vocal Remover em Áudio Tools com um BPM Analyzer e um Key Detector, renova o visual de todas as abas, corrige o Spotify depois das mudanças que o próprio Spotify fez na API em 2026, adiciona zoom com a roda do mouse na aba Imagens e deixa o atualizador ir direto para a versão mais nova.\n\n====================================================================\n\n**NOVIDADE: YTORRENTS**\n\n**O que baixa**\n- Links diretos HTTP e HTTPS, com:\n  - retomada de onde parou (se o servidor permitir), inclusive depois de fechar o app;\n  - novas tentativas automáticas quando a conexão cai (5 por padrão, configurável);\n  - redirecionamentos, nome e tamanho lidos do servidor, velocidade e tempo restante;\n  - limite de velocidade opcional e conferência do tamanho final (e do SHA-256 ou MD5, quando o link informa).\n- MEGA (links públicos de arquivo): o arquivo é baixado e decifrado no seu computador, e a assinatura do MEGA (MAC) é conferida no fim.\n- MediaFire, Pixeldrain e Dropbox (links públicos).\n- Arquivos .torrent e links magnet, com um motor de BitTorrent próprio do app:\n  - rastreadores HTTP e UDP, DHT e troca de peers (PEX);\n  - nome, tamanho, progresso, velocidade, tempo restante, peers e seeds;\n  - cada peça é conferida pelo SHA-1 do torrent antes de ser gravada como pronta;\n  - pausar, retomar e cancelar; depois de fechar e abrir o app, continua das peças que já estavam prontas;\n  - torrents com várias pastas e arquivos mantêm a estrutura original.\n- Serviços que exigem CAPTCHA, espera com propaganda, login ou pagamento (DropGalaxy e parecidos) não são contornados: o app diz isso na revisão e não adiciona o link.\n\n**Como usar**\n- Cole um ou vários links (um por linha, ou separados por espaço) e clique em \"Adicionar link\", ou use \"Adicionar .torrent\".\n- O app identifica cada link, lê nome e tamanho e mostra uma revisão. Nada entra na fila antes de você confirmar, e dá para desmarcar o que não quiser.\n- \"Iniciar fila\" começa os downloads. Cada linha tem pausar/retomar, cancelar, abrir a pasta e um menu com mais opções.\n- Abas \"Baixando\" e \"Concluídos\", com o número de itens.\n- No rodapé: pausar todos, retomar todos, cancelar todos (com confirmação), tentar as falhas de novo e limpar os concluídos (tira da lista, nunca apaga os arquivos).\n- Ao cancelar, você escolhe se mantém o que já foi baixado (para retomar depois) ou se apaga.\n\n**Onde ficam os arquivos**\n- Downloads\\yPeléTools\\yTorrents\\<nome>\\<arquivo>, uma pasta por download. Dá para desligar a pasta individual nas configurações.\n- A pasta de destino pode ser trocada no topo da aba.\n- Nomes inválidos no Windows são corrigidos e nada é sobrescrito: se o nome já existir, entra um número.\n- Enquanto baixa, o arquivo fica como .ypele-parcial. Ele só ganha o nome final depois de conferido.\n\n**Configurações (engrenagem da aba)**\n- Downloads ao mesmo tempo (1 a 10), tentativas automáticas, limite de velocidade por download, pasta individual e DHT.\n- A fila é guardada e volta ao abrir o app. Quem estava baixando volta para a fila.\n\n====================================================================\n\n**NOVIDADE: ÁUDIO TOOLS (antigo Vocal Remover)**\n\nA aba Vocal Remover agora se chama Áudio Tools e tem três ferramentas: Vocal Remover, BPM Analyzer e Key Detector.\n\n**Vocal Remover**\n- Funciona como antes.\n- Ao terminar uma separação, o app abre a pasta exata dos stems, uma vez só. Se a separação falhar, nada é aberto.\n- A tela de exportação ganhou o link \"abrir pasta\", que abre a pasta dos arquivos exportados.\n\n**BPM Analyzer**\n- Cole um link do YouTube, do SoundCloud ou do Spotify. O app mostra capa, título, artista, origem e duração.\n- O BPM vem primeiro do catálogo público do Deezer, só quando título, artista e duração batem com a música (ou pelo ISRC, no Spotify).\n- Se não houver BPM nos dados disponíveis, aparece \"Não encontramos o BPM nos dados disponíveis. Deseja analisar o áudio?\". Você pode analisar o áudio do próprio link (baixado numa pasta temporária e apagado no fim) ou anexar um arquivo do computador.\n- A análise do áudio é feita no seu computador: detecção dos ataques, autocorrelação e acompanhamento das batidas.\n- O resultado mostra o BPM, o método usado (catálogo ou análise do áudio) e a confiança. Quando a música pode ser lida como metade ou o dobro (ex.: 87 ou 174), o app mostra a alternativa.\n\n**Key Detector**\n- Mesmo fluxo: link ou arquivo.\n- Mostra a tonalidade (ex.: Fá maior), a tônica, o modo, a notação Camelot (ex.: 7B), a confiança e o método.\n- A afinação da gravação é estimada antes, para músicas que não estão em lá = 440 Hz.\n\n**Tela do resultado**\n- Inspirada no layout do Tunebat: capa grande, título e artista, e cartões com Tonalidade, Camelot, BPM e Duração.\n- Botões \"Inserir outro link\", \"Anexar arquivo\" e \"Analisar novamente\".\n- Arquivos de áudio e vídeo aceitos: os mesmos do Vocal Remover. O arquivo original nunca é alterado.\n\n====================================================================\n\n**CORREÇÕES E MELHORIAS**\n\n**1. Spotify**\n- O erro \"API do Spotify: acesso negado pela API (403)\" tinha uma causa real: desde março de 2026, o Spotify só libera a Web API, em modo de desenvolvimento, para apps cujo dono tenha Premium ativo, e mudou os endereços das playlists.\n- A página pública do Spotify (embed) passou a ser o caminho principal. Não precisa de conta, chave nem login.\n- Com credenciais próprias, o app usa os endereços novos da API (/items), com o antigo como reserva, e renova o token vencido uma vez.\n- Quando a API recusa, o painel diz o motivo exato (Premium exigido, playlist que não é sua, limite de consultas com o tempo de espera, link inexistente) e o app não insiste a cada faixa: espera 30 minutos antes de tentar a API de novo.\n- Nenhuma chave, token ou cookie vem dentro do app.\n- O áudio continua vindo do YouTube, pela busca da faixa, como antes. O app não baixa áudio do Spotify e não contorna DRM.\n\n**2. Visual**\n- Todas as abas foram revisadas no mesmo estilo escuro, com a cor de cada ferramenta: YouTube vermelho, SoundCloud laranja, Spotify verde, Redes Sociais roxo (#B300FF), Conversor azul, Imagens ciano, Áudio Tools rosa e yTorrents azul com detalhes roxos.\n- O ícone da barra superior agora é o mesmo desenho do ícone da aba no menu lateral, num quadro com a cor da aba.\n- Cada aba de download ganhou o ícone no cabeçalho.\n\n**3. Aba Imagens: zoom com a roda do mouse**\n- Roda para cima aumenta, para baixo diminui, centrado onde está o mouse, até 800%.\n- Arraste para navegar pela imagem ampliada. Clique duplo alterna entre 100% e \"Ajustar\".\n- Um selo mostra a porcentagem. O botão de 100% e os outros controles de zoom continuam funcionando e acompanham a roda.\n- O zoom é só da visualização: a imagem salva não muda.\n\n====================================================================\n\n**ATUALIZAÇÃO E INSTALADOR**\n- Quem tem a Alpha 3.3 ou 3.4, ou a Beta 3.5.0 ou 3.6.0, vai direto para a 3.7.0 pelo botão amarelo, sem instalar as versões do meio.\n- A partir da 3.7.0, o app procura a maior versão estável publicada, mesmo que a Release marcada como \"mais recente\" no GitHub seja uma correção antiga. Pré-lançamentos, rascunhos e versões iguais ou menores nunca são oferecidos.\n- A assinatura Ed25519, a chave pública, o manifesto e a conferência SHA-256 continuam iguais.\n- O pacote traz dois arquivos novos na pasta do app: ypele_transferencias.py (yTorrents) e ypele_analise.py (BPM e tonalidade).\n- Nenhuma dependência nova: o requirements.txt é o mesmo da 3.6.0.\n- Configurações, filas, histórico, separações, downloads e a pasta de dados ficam como estão.\n\n====================================================================\n\n**LIMITES CONHECIDOS**\n- Torrents: sem criptografia de protocolo (MSE), sem uTP e sem torrents só v2. Peers que exigem criptografia não conectam. Na primeira vez que um torrent roda, o Firewall do Windows pode pedir permissão para o app receber conexões.\n- MEGA: só links públicos de arquivo. Pastas do MEGA e o limite de transferência do MEGA não são contornados.\n- O BPM do catálogo depende do Deezer ter a música. Músicas com andamento livre ou muito sincopadas podem ter confiança baixa.\n- A página pública do Spotify mostra até 100 faixas de uma playlist. Para listas maiores, é preciso usar a API com uma conta Premium dona do app.\n",
+  "nome": "Beta 3.8.2",
+  "publicado_em": "2026-10-28T23:52:49Z",
+  "notas": "**YPELÉ TOOLS — BETA 3.8.2**\nChangelog oficial · outubro de 2026\nPlataforma de referência: Windows 10 e 11 (64 bits) · Python 3.13\n\nA 3.8.2 corrige cinco problemas da 3.8.0:\n- o app que abria escondido ou atrás das outras janelas;\n- vídeos MP4 que o Premiere não abria;\n- GIFs do X que chegavam como vídeo;\n- a janela que podia sumir ao minimizar;\n- o painel de logs, que passa a se chamar PowerShell.\nTudo o que a 3.8.0 trouxe continua igual.\n\n====================================================================\n\n**CORREÇÕES**\n\n**1. O app abre visível e na frente**\n- O problema:\n  - ao abrir pelo atalho ou pelo executável, a janela podia ficar escondida, atrás das outras janelas ou sem aparecer como janela aberta na barra de tarefas;\n  - às vezes ela só aparecia depois de abrir outro programa minimizado;\n  - a causa: durante a abertura, a janela aparecia vazia, era destruída e criada de novo (para ficar sem moldura) e voltava sem ser ativada. Com \"Mostrar área de trabalho\" ou outra janela na frente, o Windows a deixava escondida.\n- Agora a janela é montada escondida e aparece uma única vez, pronta:\n  - em estado normal;\n  - com o botão na barra de tarefas;\n  - na frente das outras e com o foco.\n- Abrir o app de novo com ele já aberto (atalho, executável ou clique duplo num .torrent) traz a mesma janela para a frente, inclusive se ela estiver minimizada. Não abre uma segunda cópia.\n- Se o app aberto estiver ocupado e não responder, aparece um aviso, em vez de nada acontecer.\n- Os atalhos do Menu Iniciar e da Área de Trabalho:\n  - agora são sempre de \"janela normal\";\n  - não são mais regravados a cada abertura do app.\n- Fechar o app com a janela minimizada guarda a última posição e o tamanho de verdade.\n\n**2. MP4 que os editores abrem (YouTube)**\n- O problema:\n  - com \"MP4\", o app pedia ao YouTube \"o melhor vídeo em MP4\", e hoje esse costuma ser AV1;\n  - como a extensão já era .mp4, nada era convertido;\n  - o Premiere Pro recusava o arquivo: \"tipo de compactação de vídeo não suportado: av01\".\n- Agora \"MP4\" quer dizer MP4 compatível com editores: vídeo H.264 (8 bits, 4:2:0) e áudio AAC.\n- O download pede primeiro o H.264 que o YouTube já tem. Na maioria dos vídeos, nada precisa ser recodificado.\n- Depois de baixar, o ffprobe confere o arquivo de verdade:\n  - já está certo: fica como veio;\n  - só o áudio está em outro formato (Opus): o vídeo é copiado sem perda e só o áudio vira AAC;\n  - o vídeo está em AV1, VP9, H.265 ou H.264 de 10 bits: ele é recodificado para H.264, mantendo a resolução e os quadros por segundo;\n  - o arquivo está incompleto ou corrompido: o download falha com o motivo e nada é salvo.\n- O resultado é conferido de novo (contêiner, codecs, faixas, resolução, fps e duração) antes de contar como concluído.\n- O painel mostra o que o arquivo era e o que virou (por exemplo, \"AV1 1920x1080 60 fps + Opus estéreo\").\n- MKV, WebM e \"Vídeo original\" continuam com o codec original. Use um deles para guardar a maior resolução (1440p, 4K) sem recodificar.\n- No YouTube, o H.264 costuma ir até 1080p.\n- Vídeos HDR convertidos para MP4 ficam em SDR (o painel avisa).\n\n**3. GIFs do X (Twitter)**\n- O X guarda os GIFs como vídeo MP4 sem som, e o app salvava esse MP4.\n- Agora a mídia que o próprio X marca como GIF (\"animated_gif\") é salva como um GIF animado de verdade:\n  - mesmo tamanho e mesmos quadros por segundo (até 30), paleta de cores em duas passadas;\n  - o resultado é conferido: arquivo GIF, animado, no tamanho certo e com a duração completa.\n- Vídeos comuns do X continuam como vídeo. O app só converte o que o X marca como GIF.\n- Se o X marcar como GIF um arquivo que tem som, ele fica como vídeo e o painel avisa.\n- Publicações com várias mídias: cada uma é tratada pelo tipo dela (GIF, vídeo ou foto).\n- Quem preferir o MP4: Configurações > Redes Sociais > \"GIFs do X\" > \"Vídeo MP4, como o X entrega\".\n\n**4. Minimizar e restaurar a janela**\n- O problema:\n  - para minimizar, a janela sem moldura do app era desligada e religada;\n  - no Windows, isso recriava a janela a cada vez;\n  - ela podia sumir da barra de tarefas ou não voltar ao clicar no ícone.\n- Agora o próprio Windows minimiza a janela, que continua sendo a mesma.\n- Clicar no ícone na barra de tarefas minimiza e restaura, como em qualquer programa. Win+D, Win+M e Alt+Espaço também funcionam.\n- Os downloads e as conversões continuam com a janela minimizada. Nada é recarregado ao restaurar.\n\n**5. Painel de logs: PowerShell**\n- O terminal agora se chama PowerShell e tem o visual do console do Windows:\n  - fundo quase preto;\n  - fonte Cascadia Mono (ou Consolas);\n  - horário em cinza e origem alinhada.\n- Cores por tipo de mensagem:\n  - cinza-claro: comum;\n  - ciano: etapas técnicas (yt-dlp, FFmpeg, conversões);\n  - verde: concluído;\n  - amarelo: aviso, com \"AVISO:\" no começo;\n  - vermelho: erro, com \"ERRO:\" no começo.\n- Continua igual:\n  - filtros por origem e contador;\n  - Auto-scroll (desligado, as mensagens continuam chegando);\n  - recolher e expandir, altura ajustável e configurações salvas.\n- A lixeira limpa só a tela. As mensagens novas continuam chegando, e o histórico do relatório de erros fica.\n- Cookies, senhas, tokens e chaves são escondidos no PowerShell e no \"Copiar logs\", com a mesma limpeza dos relatórios de erro.\n\n====================================================================\n\n**ATUALIZAÇÃO**\n- Quem tem a 3.8.0 (ou uma versão anterior com o atualizador) recebe a 3.8.2 pelo botão amarelo, assim que ela for publicada no repositório oficial.\n- A assinatura, a chave pública, o manifesto e a conferência dos arquivos continuam iguais.\n- Nenhuma dependência nova: o app usa o FFmpeg e o ffprobe que já instalava.\n",
   "chave": "ypele-2026-1",
   "pacotes": [
     {
       "distribuicao": "windows-instalador",
-      "arquivo": "ypeletools-3.7.0-windows.zip",
-      "tamanho": 901750,
-      "sha256": "e81016d47bab119f9d04c84bd238ebd208d3d73f311ef271413f590e9e642289",
+      "arquivo": "ypeletools-3.8.2-windows.zip",
+      "tamanho": 997537,
+      "sha256": "e3395cbea3dc8129b512a49f924e8aa71a615b3858f6a4da27bbf8845121ef23",
       "arquivos": [
         {
           "caminho": "app/CHANGELOG_ALPHA_3.0.txt",
@@ -57,6 +57,21 @@
           "sha256": "3b2460e632b9d8e4df5cf14c6bea670faa7e56630bc77fee8b3a8446305f7b34"
         },
         {
+          "caminho": "app/CHANGELOG_BETA_3.7.1.txt",
+          "tamanho": 8451,
+          "sha256": "4997961c423177fa6af96f8a2850b2d104ae9742dd0fc7519aa4ce28436eb362"
+        },
+        {
+          "caminho": "app/CHANGELOG_BETA_3.8.0.txt",
+          "tamanho": 8899,
+          "sha256": "8cfd312cc38c01216b1f11e907be8abde67896cef260bbf1d6dfb61b5ee1cdcd"
+        },
+        {
+          "caminho": "app/CHANGELOG_BETA_3.8.2.txt",
+          "tamanho": 5806,
+          "sha256": "97df33fa0345469ccfb34cdbb6e759b6d06e35cd52145e299717ef196f76173b"
+        },
+        {
           "caminho": "app/requirements.txt",
           "tamanho": 1802,
           "sha256": "7c1b7ef55bd0e189433f4befc6065bcc53072e56fa10963c618683fbe7388337"
@@ -68,8 +83,8 @@
         },
         {
           "caminho": "app/ypele_analise.py",
-          "tamanho": 18642,
-          "sha256": "0f6d43acb77d01c6d9f8ed5d0605ac1a2859944b1208e50afe1ab9fcf242aadb"
+          "tamanho": 55755,
+          "sha256": "940e34f1b88f8c2200f51b936065c67382352b870497cad9638e0c6a0b73ee71"
         },
         {
           "caminho": "app/ypele_atualizador.py",
@@ -78,8 +93,8 @@
         },
         {
           "caminho": "app/ypele_identidade.py",
-          "tamanho": 25593,
-          "sha256": "0eeb0ad912986a94af6f423fd53748174938c37f6924d8aa6207b890177b95b9"
+          "tamanho": 28174,
+          "sha256": "b1248dbdebed7c3ed7c08a90d38127061a7de3008e0679e88c13f7c5c2b5a0a8"
         },
         {
           "caminho": "app/ypele_stems.py",
@@ -88,25 +103,25 @@
         },
         {
           "caminho": "app/ypele_tools.py",
-          "tamanho": 1899402,
-          "sha256": "9f01f9d656f879629754a5e79e9cd19a7f9d98c6587017c903faaad23a0cc983"
+          "tamanho": 2149526,
+          "sha256": "878d9ddbfda2d1129b2e51de8172d9762e8220d233618870b983ef58c0b3031d"
         },
         {
           "caminho": "app/ypele_transferencias.py",
-          "tamanho": 123802,
-          "sha256": "15e7631c5ac4e4c80f7251344871c56e421597a3a6dcef5ffc304502dfc54fe1"
+          "tamanho": 166282,
+          "sha256": "0ccaa0d823dde0b53de42e12b8d9e05889b096ce30d99b08feba0f863d44186a"
         },
         {
           "caminho": "desinstalar/ypele_setup.pyw",
-          "tamanho": 244526,
-          "sha256": "93619cb2d35d59db888a57042f71e7a488583ed8713af85030cf58c6e06f8e4c"
+          "tamanho": 247074,
+          "sha256": "4517675e87f21e4fe9c2d55a4565bb1baba0e39b2377813120d9f7d1b8051844"
         }
       ]
     }
   ],
   "instalador": {
-    "arquivo": "YPeleTools-Setup-Beta-3.7.0.exe",
-    "tamanho": 22618624,
-    "sha256": "c5186a4f0821b8b0189b6e65472e7ad37bbaceace19a9a1f8a2568a26e03e8d9"
+    "arquivo": "YPeleTools-Setup-Beta-3.8.2.exe",
+    "tamanho": 22713856,
+    "sha256": "cff2111abf1983a0b8cd930337417e0246618ac6078a271461a0c7ae5b42f734"
   }
 }
