@@ -2,19 +2,19 @@
   "formato": 1,
   "produto": "yPeleTools",
   "repositorio": "SenhorMKG/ypeletools-updates",
-  "versao": "3.8.2",
-  "tag": "v3.8.2",
+  "versao": "3.9.0",
+  "tag": "v3.9.0",
   "canal": "Beta",
-  "nome": "Beta 3.8.2",
-  "publicado_em": "2026-10-28T23:52:49Z",
-  "notas": "**YPELÉ TOOLS — BETA 3.8.2**\nChangelog oficial · outubro de 2026\nPlataforma de referência: Windows 10 e 11 (64 bits) · Python 3.13\n\nA 3.8.2 corrige cinco problemas da 3.8.0:\n- o app que abria escondido ou atrás das outras janelas;\n- vídeos MP4 que o Premiere não abria;\n- GIFs do X que chegavam como vídeo;\n- a janela que podia sumir ao minimizar;\n- o painel de logs, que passa a se chamar PowerShell.\nTudo o que a 3.8.0 trouxe continua igual.\n\n====================================================================\n\n**CORREÇÕES**\n\n**1. O app abre visível e na frente**\n- O problema:\n  - ao abrir pelo atalho ou pelo executável, a janela podia ficar escondida, atrás das outras janelas ou sem aparecer como janela aberta na barra de tarefas;\n  - às vezes ela só aparecia depois de abrir outro programa minimizado;\n  - a causa: durante a abertura, a janela aparecia vazia, era destruída e criada de novo (para ficar sem moldura) e voltava sem ser ativada. Com \"Mostrar área de trabalho\" ou outra janela na frente, o Windows a deixava escondida.\n- Agora a janela é montada escondida e aparece uma única vez, pronta:\n  - em estado normal;\n  - com o botão na barra de tarefas;\n  - na frente das outras e com o foco.\n- Abrir o app de novo com ele já aberto (atalho, executável ou clique duplo num .torrent) traz a mesma janela para a frente, inclusive se ela estiver minimizada. Não abre uma segunda cópia.\n- Se o app aberto estiver ocupado e não responder, aparece um aviso, em vez de nada acontecer.\n- Os atalhos do Menu Iniciar e da Área de Trabalho:\n  - agora são sempre de \"janela normal\";\n  - não são mais regravados a cada abertura do app.\n- Fechar o app com a janela minimizada guarda a última posição e o tamanho de verdade.\n\n**2. MP4 que os editores abrem (YouTube)**\n- O problema:\n  - com \"MP4\", o app pedia ao YouTube \"o melhor vídeo em MP4\", e hoje esse costuma ser AV1;\n  - como a extensão já era .mp4, nada era convertido;\n  - o Premiere Pro recusava o arquivo: \"tipo de compactação de vídeo não suportado: av01\".\n- Agora \"MP4\" quer dizer MP4 compatível com editores: vídeo H.264 (8 bits, 4:2:0) e áudio AAC.\n- O download pede primeiro o H.264 que o YouTube já tem. Na maioria dos vídeos, nada precisa ser recodificado.\n- Depois de baixar, o ffprobe confere o arquivo de verdade:\n  - já está certo: fica como veio;\n  - só o áudio está em outro formato (Opus): o vídeo é copiado sem perda e só o áudio vira AAC;\n  - o vídeo está em AV1, VP9, H.265 ou H.264 de 10 bits: ele é recodificado para H.264, mantendo a resolução e os quadros por segundo;\n  - o arquivo está incompleto ou corrompido: o download falha com o motivo e nada é salvo.\n- O resultado é conferido de novo (contêiner, codecs, faixas, resolução, fps e duração) antes de contar como concluído.\n- O painel mostra o que o arquivo era e o que virou (por exemplo, \"AV1 1920x1080 60 fps + Opus estéreo\").\n- MKV, WebM e \"Vídeo original\" continuam com o codec original. Use um deles para guardar a maior resolução (1440p, 4K) sem recodificar.\n- No YouTube, o H.264 costuma ir até 1080p.\n- Vídeos HDR convertidos para MP4 ficam em SDR (o painel avisa).\n\n**3. GIFs do X (Twitter)**\n- O X guarda os GIFs como vídeo MP4 sem som, e o app salvava esse MP4.\n- Agora a mídia que o próprio X marca como GIF (\"animated_gif\") é salva como um GIF animado de verdade:\n  - mesmo tamanho e mesmos quadros por segundo (até 30), paleta de cores em duas passadas;\n  - o resultado é conferido: arquivo GIF, animado, no tamanho certo e com a duração completa.\n- Vídeos comuns do X continuam como vídeo. O app só converte o que o X marca como GIF.\n- Se o X marcar como GIF um arquivo que tem som, ele fica como vídeo e o painel avisa.\n- Publicações com várias mídias: cada uma é tratada pelo tipo dela (GIF, vídeo ou foto).\n- Quem preferir o MP4: Configurações > Redes Sociais > \"GIFs do X\" > \"Vídeo MP4, como o X entrega\".\n\n**4. Minimizar e restaurar a janela**\n- O problema:\n  - para minimizar, a janela sem moldura do app era desligada e religada;\n  - no Windows, isso recriava a janela a cada vez;\n  - ela podia sumir da barra de tarefas ou não voltar ao clicar no ícone.\n- Agora o próprio Windows minimiza a janela, que continua sendo a mesma.\n- Clicar no ícone na barra de tarefas minimiza e restaura, como em qualquer programa. Win+D, Win+M e Alt+Espaço também funcionam.\n- Os downloads e as conversões continuam com a janela minimizada. Nada é recarregado ao restaurar.\n\n**5. Painel de logs: PowerShell**\n- O terminal agora se chama PowerShell e tem o visual do console do Windows:\n  - fundo quase preto;\n  - fonte Cascadia Mono (ou Consolas);\n  - horário em cinza e origem alinhada.\n- Cores por tipo de mensagem:\n  - cinza-claro: comum;\n  - ciano: etapas técnicas (yt-dlp, FFmpeg, conversões);\n  - verde: concluído;\n  - amarelo: aviso, com \"AVISO:\" no começo;\n  - vermelho: erro, com \"ERRO:\" no começo.\n- Continua igual:\n  - filtros por origem e contador;\n  - Auto-scroll (desligado, as mensagens continuam chegando);\n  - recolher e expandir, altura ajustável e configurações salvas.\n- A lixeira limpa só a tela. As mensagens novas continuam chegando, e o histórico do relatório de erros fica.\n- Cookies, senhas, tokens e chaves são escondidos no PowerShell e no \"Copiar logs\", com a mesma limpeza dos relatórios de erro.\n\n====================================================================\n\n**ATUALIZAÇÃO**\n- Quem tem a 3.8.0 (ou uma versão anterior com o atualizador) recebe a 3.8.2 pelo botão amarelo, assim que ela for publicada no repositório oficial.\n- A assinatura, a chave pública, o manifesto e a conferência dos arquivos continuam iguais.\n- Nenhuma dependência nova: o app usa o FFmpeg e o ffprobe que já instalava.\n",
+  "nome": "Beta 3.9.0",
+  "publicado_em": "2026-10-29T04:56:35Z",
+  "notas": "**YPELÉ TOOLS — BETA 3.9.0**\nChangelog oficial · outubro de 2026\nPlataforma de referência: Windows 10 e 11 (64 bits) · Python 3.13\n\nA 3.9.0 traz:\n- a correção da atualização que falhava com \"Acesso negado\";\n- a nova aba Universal, para baixar de outros sites;\n- o Início mandando cada link para a aba certa;\n- capas certas para cada tipo de arquivo nos downloads recentes;\n- o app em segundo plano, com ícone na bandeja do Windows;\n- um ícone novo e um visual mais limpo;\n- o botão fechar (X) corrigido.\nTudo o que a 3.8.2 trouxe continua igual.\n\n====================================================================\n\n**CORREÇÕES**\n\n**1. Atualização que falhava com \"Acesso negado\"**\n- O problema:\n  - na atualização da 3.8.0 para a 3.8.2, a troca do arquivo app\\ypele.ico falhou com \"[WinError 5] Acesso negado\";\n  - a restauração automática também falhou, e a instalação ficou com arquivos de duas versões.\n- A causa: o Windows recusa trocar um arquivo que outro programa está lendo naquele instante (ou que está marcado\n  como somente leitura). O ícone nem tinha mudado, mas o atualizador antigo regravava todos os arquivos.\n- Agora:\n  - arquivos iguais (conferidos pelo SHA-256) não são regravados;\n  - antes de mexer em qualquer coisa, o atualizador confere se os arquivos podem ser trocados. Se algum estiver em\n    uso, ele espera alguns segundos e, se continuar preso, não troca nada e mostra quem está usando o arquivo;\n  - uma trava passageira é tentada de novo algumas vezes, com pausas curtas (nunca em ciclo infinito);\n  - cada troca é anotada num diário. Se algo falhar no meio (ou o computador desligar), a versão anterior é\n    restaurada a partir de cópias conferidas pelo SHA-256;\n  - se a própria restauração não terminar, o app avisa na próxima abertura e oferece \"Recuperar agora\", que termina\n    o trabalho com segurança;\n  - sobras de uma atualização interrompida são limpas.\n- A assinatura digital, a chave pública, o manifesto e a conferência de cada arquivo continuam iguais e obrigatórios.\n- O ícone novo usa outro nome de arquivo (ypeletools.ico). Por isso, a atualização para a 3.9.0 não precisa tocar no\n  ypele.ico antigo, que era o arquivo que travava.\n\n**2. Botão fechar (X)**\n- O vermelho do botão agora ocupa o botão inteiro, até as bordas da barra.\n- O X fica centralizado de verdade e acompanha a escala de tela do Windows (125%, 150%...).\n- O realce ao passar o mouse aparece suavemente, e o clique só fecha se for solto em cima do botão.\n- A faixa de redimensionar a janela não cobre mais os botões de minimizar, maximizar e fechar.\n\n====================================================================\n\n**NOVIDADES**\n\n**3. Aba Universal**\n- Fica logo abaixo do Início no menu. Serve para links que as outras abas não atendem: páginas de outros sites e\n  links diretos de arquivos.\n- Cole o link e clique em \"Analisar\". O app mostra:\n  - o site, o título e a miniatura (quando o site informa);\n  - o tipo (vídeo, áudio, imagem, GIF ou arquivo);\n  - o formato original e o tamanho (quando o servidor informa);\n  - as limitações encontradas (sem áudio, transmissão ao vivo, tamanho não informado...).\n- Formatos oferecidos, só quando o app consegue entregar de verdade:\n  - vídeo: original, MP4, WebM ou MKV;\n  - áudio: MP3, WAV, FLAC, M4A ou OGG;\n  - imagem: original, PNG, JPEG, WebP ou BMP (convertida pelo Pillow e conferida);\n  - GIF animado: mantido como GIF;\n  - outros arquivos (PDF, ZIP...): como vieram.\n- Os downloads usam a mesma fila, o mesmo histórico e as mesmas conversões das outras abas, com progresso, cancelar\n  e tentar de novo. A análise roda em segundo plano: a janela não trava.\n- Arquivos diretos são baixados pelo próprio app, com progresso real e continuação de onde parou.\n- Links de YouTube, SoundCloud, Spotify, redes sociais e torrents colados no Universal vão para a aba própria deles.\n- Segurança:\n  - só endereços públicos da internet: links para o próprio computador ou para a rede local são recusados, inclusive\n    depois de um redirecionamento;\n  - o Universal não contorna login, paywall, DRM ou CAPTCHA. Conteúdo protegido aparece com o motivo, e nada é\n    baixado.\n\n**4. O Início manda cada link para a aba certa**\n- O campo do Início usa a mesma detecção do Universal:\n  - YouTube, SoundCloud, Spotify e redes sociais: fila da aba do serviço, como antes;\n  - magnet, arquivo .torrent e serviços de arquivos (MEGA, MediaFire...): a revisão do yTorrents;\n  - link direto de imagem: a imagem é baixada e abre na aba Imagens;\n  - qualquer outro link: a aba Universal, já preenchida e analisando.\n- Com vários links colados juntos, cada um vai para a sua aba, e o app mostra a aba do primeiro.\n- O mesmo link não entra duas vezes na fila, nem com clique duplo em \"Baixar\".\n\n**5. Capas nos downloads recentes**\n- Cada arquivo do Universal ganha uma capa que combina com o arquivo salvo:\n  - vídeo: a miniatura do site ou, sem ela, um quadro do próprio vídeo;\n  - áudio: a capa embutida no arquivo, a imagem do site ou uma capa de áudio;\n  - GIF: o primeiro quadro;\n  - imagem: a própria imagem;\n  - outros arquivos: uma capa do tipo (documento, compactado...).\n- A extensão mostrada é sempre a do arquivo salvo (um MKV aparece como MKV).\n- As capas ficam guardadas e continuam lá depois de fechar o app.\n\n**6. Segundo plano e ícone na bandeja do Windows**\n- O yPeléTools ganha um ícone na bandeja do Windows (perto do relógio).\n- Por padrão, o X esconde a janela e o app continua trabalhando (downloads, conversões, torrents). Na primeira vez,\n  um aviso explica isso.\n- Clique duplo no ícone: a janela volta.\n- Botão direito no ícone:\n  - Abrir yPeléTools;\n  - Mostrar/Ocultar janela;\n  - Downloads em andamento (quando há algum);\n  - Sair do yPeléTools.\n- Sair com algo em andamento pede confirmação. Ao sair, o ícone some e nenhum processo fica para trás.\n- Em Configurações > \"Segundo plano (bandeja do Windows)\" dá para:\n  - desligar o ícone (o X volta a fechar o app);\n  - escolher se o X esconde na bandeja ou fecha o app.\n- Abrir o app de novo pelo atalho traz a mesma janela de volta. Não abre uma segunda cópia.\n\n**7. Ícone novo**\n- Um \"Y\" com uma seta de download sobre um fundo dourado, desenhado para ficar legível de 16 a 256 pixels.\n- Usado na janela, na barra de tarefas, na bandeja, nos atalhos, no instalador e no atualizador.\n- Depois de atualizar pelo botão, o executável do app (o que aparece na barra de tarefas e no Gerenciador de Tarefas)\n  também passa a ter o ícone e a versão novos na primeira abertura. Até a 3.8.2 ele continuava com os da instalação,\n  porque o Windows não deixa sobrescrever um programa aberto; agora o antigo é renomeado e o novo entra no lugar.\n\n**8. Visual mais limpo**\n- As cores do app têm papéis definidos: fundo, superfícies, bordas, texto, sucesso, aviso, erro e informação. O\n  dourado é a cor principal.\n- Menu lateral:\n  - indicador dourado discreto, que desliza até a aba escolhida;\n  - realce suave ao passar o mouse.\n- Botões com transição curta ao passar o mouse.\n- As animações são curtas e somem quando o Windows pede menos animação (Configurações > Acessibilidade > Efeitos de\n  animação).\n- A aba Universal usa os mesmos cartões, campos e botões das outras abas.\n",
   "chave": "ypele-2026-1",
   "pacotes": [
     {
       "distribuicao": "windows-instalador",
-      "arquivo": "ypeletools-3.8.2-windows.zip",
-      "tamanho": 997537,
-      "sha256": "e3395cbea3dc8129b512a49f924e8aa71a615b3858f6a4da27bbf8845121ef23",
+      "arquivo": "ypeletools-3.9.0-windows.zip",
+      "tamanho": 1062598,
+      "sha256": "cfa72b791f97fa732afeea602b01ff0a08df96f1c8329aa746bc25d218eb8100",
       "arquivos": [
         {
           "caminho": "app/CHANGELOG_ALPHA_3.0.txt",
@@ -72,14 +72,14 @@
           "sha256": "97df33fa0345469ccfb34cdbb6e759b6d06e35cd52145e299717ef196f76173b"
         },
         {
+          "caminho": "app/CHANGELOG_BETA_3.9.0.txt",
+          "tamanho": 7375,
+          "sha256": "6a6693fd83f7072279e99ff259f8a994ef2e4bf19e4238185406c25a1d690a47"
+        },
+        {
           "caminho": "app/requirements.txt",
           "tamanho": 1802,
           "sha256": "7c1b7ef55bd0e189433f4befc6065bcc53072e56fa10963c618683fbe7388337"
-        },
-        {
-          "caminho": "app/ypele.ico",
-          "tamanho": 46241,
-          "sha256": "b4e5bb319ba97922069b4d16547d7694b8d212fc595c68ce89fa0fff0d39abf0"
         },
         {
           "caminho": "app/ypele_analise.py",
@@ -88,13 +88,13 @@
         },
         {
           "caminho": "app/ypele_atualizador.py",
-          "tamanho": 67505,
-          "sha256": "709f9db231041315594f53b96d28d7c242accd86db5102e6786661545a49eb56"
+          "tamanho": 88021,
+          "sha256": "b81eb137c520caea90c967629a208b40313537dd2fc9e3c76398419003fd4183"
         },
         {
           "caminho": "app/ypele_identidade.py",
-          "tamanho": 28174,
-          "sha256": "b1248dbdebed7c3ed7c08a90d38127061a7de3008e0679e88c13f7c5c2b5a0a8"
+          "tamanho": 29811,
+          "sha256": "501c00b50d0f1f14ecba6a339a5aedcad302eec4e1201d993385db720657784e"
         },
         {
           "caminho": "app/ypele_stems.py",
@@ -103,8 +103,8 @@
         },
         {
           "caminho": "app/ypele_tools.py",
-          "tamanho": 2149526,
-          "sha256": "878d9ddbfda2d1129b2e51de8172d9762e8220d233618870b983ef58c0b3031d"
+          "tamanho": 2260862,
+          "sha256": "4245c1a1218b2c76ae6fefe5c5bcfc09752b7dc208ab1b0570c6b82d0393782a"
         },
         {
           "caminho": "app/ypele_transferencias.py",
@@ -112,16 +112,26 @@
           "sha256": "0ccaa0d823dde0b53de42e12b8d9e05889b096ce30d99b08feba0f863d44186a"
         },
         {
+          "caminho": "app/ypeletools.ico",
+          "tamanho": 37454,
+          "sha256": "62d4cc167d4246d51988ed1be11ec8aae5d2bec8ffd2ba9ae6006e1d623c7793"
+        },
+        {
+          "caminho": "app/ypeletools.png",
+          "tamanho": 34092,
+          "sha256": "adde7c33f054d0e95569f0f1af8daa7a35bf390d8d488e1a001d12a9f25a5e95"
+        },
+        {
           "caminho": "desinstalar/ypele_setup.pyw",
-          "tamanho": 247074,
-          "sha256": "4517675e87f21e4fe9c2d55a4565bb1baba0e39b2377813120d9f7d1b8051844"
+          "tamanho": 248653,
+          "sha256": "ea6196b9db67448abf3b61a6b42f2df73dfa2a203101ee3dbf155c4df4fa4949"
         }
       ]
     }
   ],
   "instalador": {
-    "arquivo": "YPeleTools-Setup-Beta-3.8.2.exe",
-    "tamanho": 22713856,
-    "sha256": "cff2111abf1983a0b8cd930337417e0246618ac6078a271461a0c7ae5b42f734"
+    "arquivo": "YPeleTools-Setup-Beta-3.9.0.exe",
+    "tamanho": 22760448,
+    "sha256": "16c819ce89bf63d80a239c3006b5c908d1e471eabfa97b19533d58badae8395e"
   }
 }
